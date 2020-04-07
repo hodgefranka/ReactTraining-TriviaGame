@@ -17,30 +17,30 @@
 const name = prompt(`Enter your name: `);
 console.log(name);
 
-const question1 = `What is the instructor's name? `;
-const answer1 = `Michael`;
+const questionnaire = {
+  questions: [`What is the instructor's name?`, `How old is the instructor?`],
+  answers: [`Michael`, `31`],
+  userAnswers: [``, ``],
+  userScore: 0
+};
 
-const question2 = `How old is the instructor? `;
-const answer2 = `31`;
-
-let userScore = 0;
-
-const userAnswer1 = prompt(question1);
-if (userAnswer1 === answer1) {
-  userScore = userScore + 1;
+for (let index = 0; index <= 1; index++) {
+  questionnaire.userAnswers[index] = prompt(questionnaire.questions[index]);
+  if (questionnaire.userAnswers[index] === questionnaire.answers[index]) {
+    questionnaire.userScore++;
+  }
 }
 
-const userAnswer2 = prompt(question2);
-if (userAnswer2 === answer2) {
-  userScore = userScore + 1;
-} else if (userScore === 0) {
-  alert(`${name}, you need more practice!`);
-}
-
-if (userScore === 1) {
-  alert(`${name}, close!`);
-}
-
-if (userScore === 2) {
-  alert(`${name}, Awesome job!  Perfect!`);
+switch (questionnaire.userScore) {
+  case 0:
+    alert(`${name}, you need more practice!`);
+    break;
+  case 1:
+    alert(`${name}, close!`);
+    break;
+  case 2:
+    alert(`${name}, Awesome job!  Perfect!`);
+    break;
+  default:
+    break;
 }
